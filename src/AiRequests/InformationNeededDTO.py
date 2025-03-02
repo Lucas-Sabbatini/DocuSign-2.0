@@ -2,6 +2,7 @@ import json
 from dataclasses import dataclass
 from typing import List
 
+
 @dataclass
 class InformationNeededDTO:
     legislacoes: List[str]
@@ -14,8 +15,8 @@ class InformationNeededDTO:
         return InformationNeededDTO(**data)
 
 
-if __name__ == '__main__':
-    json_str = '''
+if __name__ == "__main__":
+    json_str = """
     {
     "legislacoes": [
         "Código Civil",
@@ -25,6 +26,6 @@ if __name__ == '__main__':
         "Normas da ANVISA"
     ]
     }
-    '''
+    """
     info = InformationNeededDTO.parseJsonToClass(json_str)
     print(info)
