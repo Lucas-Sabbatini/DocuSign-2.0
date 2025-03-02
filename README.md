@@ -18,6 +18,7 @@ We want founders to rethink how documents should be created and distributed for 
 
 Imagine a new set of tools that could:
 
+- Build your own template with only one prompt.
 - Take any existing signed document, remove the variables of your choosing, and create a new document template.
 - Auto fill documents with information you’ve provided in the past or that is publicly available about you.
 - Allow you to fill out complicated documents with a voice agent that can explain hard-to-understand terms or conditions.
