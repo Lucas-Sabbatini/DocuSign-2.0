@@ -10,7 +10,7 @@ class WeaviateClient:
         weaviate_client = weaviate.connect_to_local()
         embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
         return weaviate_client, embeddings
-    
+
     @staticmethod
     def addDocuments(docs: list[Document]) -> list[str]:
         client, embeddings = WeaviateClient.connect()
@@ -25,11 +25,12 @@ class WeaviateClient:
                     properties={"text": d.page_content},
                     vector=response,
                 )
-                print(f"Objeto adicionado \n ID: {obj_id} Progresso: {(i+1)/len(docs)*100}")
+                print(
+                    f"Objeto adicionado \n ID: {obj_id} Progresso: {(i + 1) / len(docs) * 100}"
+                )
                 ids.append(obj_id)
                 client.close()
         return ids
-            
 
     @staticmethod
     def searchOnStore(query: str) -> list[Document]:
@@ -51,9 +52,6 @@ class WeaviateClient:
             client.close()
         return documents
 
-        
 
-
-
-if __name__ == '__main__':
-    print(WeaviateClient.searchOnStore("Estatuto da Terra (Lei nº 4.504/1964)")[0].page_content)
+if __name__ == "__main__":
+    print(WeaviateClient.searchOnStore("Código Civil")[0].page_content)
