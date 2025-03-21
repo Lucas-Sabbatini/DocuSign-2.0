@@ -37,4 +37,4 @@ class AiRequest:
                 content=f"{prompt}. Para isso você pode se basear nas legislações que você tem conhecimento e também as que eu vou lhe fornecer abaixo:\n{promptContext}"
             )
         ]
-        return self.llm.invoke(messages)
+        return self.llm.invoke(messages).content

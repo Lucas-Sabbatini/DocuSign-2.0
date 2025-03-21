@@ -1,11 +1,16 @@
-from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from VectorStore.WeviateClient import WeaviateClient
+from langchain_unstructured import UnstructuredLoader
+from ..VectorStore.WeviateClient import WeaviateClient
 
 file_path = "Vade_mecum_2023.pdf"
-loader = PyPDFLoader(file_path)
+loader = UnstructuredLoader(file_path)
 
 docs = loader.load()
+docs_filtrados = [
+    doc
+    for doc in docs
+    if doc.metadata.get("category") not in ["Title", "UncategorizedText"]
+]
 
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -14,4 +19,5 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 all_splits = text_splitter.split_documents(docs)
 
+print(all_splits[0])
 ids = WeaviateClient.addDocuments(docs=all_splits)
